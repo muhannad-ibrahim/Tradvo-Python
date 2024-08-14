@@ -1,0 +1,5 @@
+__pycache__/
+venv
+apk_manager/apks/
+apk_manager/screenshots/
+apk_manager/videos/

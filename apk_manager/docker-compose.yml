@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_DATABASE: apk_manager
+      MYSQL_ROOT_PASSWORD: Qwert12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  web:
+    build: .
+    container_name: apk_manager_web
+    command: ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 apk_manager.wsgi:application"] 
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://root:Qwert12345@db:3306/apk_manager 
+
+volumes:
+  db_data:

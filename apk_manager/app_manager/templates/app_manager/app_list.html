@@ -1,0 +1,13 @@
+<h2>Your Apps</h2>
+<a href="{% url 'app_add' %}">Add New App</a>
+<ul>
+    {% for app in apps %}
+        <li>
+            {{ app.name }} 
+            <a href="{% url 'app_update' app.id %}">Edit</a>
+            <a href="{% url 'app_delete' app.id %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No apps uploaded yet.</li>
+    {% endfor %}
+</ul>

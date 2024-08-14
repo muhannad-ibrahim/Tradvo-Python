@@ -1,0 +1,7 @@
+<h2>Update App</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update App</button>
+</form>
+<a href="{% url 'app_list' %}">Cancel</a>
