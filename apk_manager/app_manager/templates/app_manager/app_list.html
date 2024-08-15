@@ -1,13 +1,14 @@
-<h2>Your Apps</h2>
-<a href="{% url 'app_add' %}">Add New App</a>
+{% load i18n %}
+<h2>{% trans "Your Apps" %}</h2>
+<a href="{% url 'app_add' %}">{% trans "Add New App" %}</a>
 <ul>
     {% for app in apps %}
         <li>
             {{ app.name }} 
-            <a href="{% url 'app_update' app.id %}">Edit</a>
-            <a href="{% url 'app_delete' app.id %}">Delete</a>
+            <a href="{% url 'app_update' app.id %}">{% trans "Edit" %}</a>
+            <a href="{% url 'app_delete' app.id %}">{% trans "Delete" %}</a>
         </li>
     {% empty %}
-        <li>No apps uploaded yet.</li>
+        <li>{% trans "No apps uploaded yet." %}</li>
     {% endfor %}
 </ul>

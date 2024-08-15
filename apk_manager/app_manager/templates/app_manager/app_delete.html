@@ -1,7 +1,8 @@
-<h2>Delete App</h2>
-<p>Are you sure you want to delete "{{ app.name }}"?</p>
+{% load i18n %}
+<h2>{% trans "Delete App" %}</h2>
+<p>{% trans "Are you sure you want to delete" %} "{{ app.name }}"?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button type="submit">{% trans "Yes, delete" %}</button>
 </form>
-<a href="{% url 'app_list' %}">Cancel</a>
+<a href="{% url 'app_list' %}">{% trans "Cancel" %}</a>

@@ -1,4 +1,19 @@
-<h2>Welcome, {{ user.username }}!</h2>
+{% load i18n %}
 
-<a href="{% url 'app_list' %}">apps</a>
-<a href="{% url 'logout' %}">Logout</a>
+<h2>{% trans "Welcome" %}, {{ user.username }}!</h2>
+
+<a href="{% url 'app_list' %}">{% trans "Apps" %}</a>
+<a href="{% url 'logout' %}">{% trans "Logout" %}</a>
+
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <select name="language" onchange="this.form.submit()">
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% for lang in LANGUAGES %}
+          <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+              {{ lang.1 }}
+          </option>
+      {% endfor %}
+  </select>
+</form>

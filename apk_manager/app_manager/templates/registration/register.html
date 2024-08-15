@@ -1,6 +1,20 @@
-<h2>Register</h2>
+{% load i18n %}
+<h2>{% trans "Register" %}</h2>
 <form method="post" action="/register/">
     {% csrf_token %}
     {{ form }}
-    <button type="submit">Register</button>
+    <button type="submit">{% trans "Register" %}</button>
+</form>
+
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <select name="language" onchange="this.form.submit()">
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% for lang in LANGUAGES %}
+          <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+              {{ lang.1 }}
+          </option>
+      {% endfor %}
+  </select>
 </form>

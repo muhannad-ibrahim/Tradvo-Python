@@ -1,6 +1,21 @@
-<h2>Add New App</h2>
+{% load i18n %}
+<h2>{% trans "Add New App" %}</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add App</button>
+    <button type="submit">{% trans "Add App" %}</button>
 </form>
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                {{ lang.1 }}
+            </option>
+        {% endfor %}
+    </select>
+  </form>
+  
