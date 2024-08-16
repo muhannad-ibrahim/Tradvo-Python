@@ -30,3 +30,4 @@ mysqlclient>=2.0,<3.0
 requests==2.30.0
 selenium==4.9.1
 django-environ>=0.8,<1.0
+Appium-Python-Client

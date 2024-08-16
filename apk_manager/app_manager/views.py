@@ -8,16 +8,23 @@ from .models import App
 from .forms import AppForm
 
 def register(request):
-    if request.method == "POST": 
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             login(request, form.save())
             return redirect('home')
     else:
         form = UserCreationForm()
+    
     return render(request, 'registration/register.html', {"form": form})
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -25,6 +32,7 @@ def user_login(request):
             return redirect('home')
     else:
         form = AuthenticationForm()
+    
     return render(request, 'registration/login.html', {'form': form})
 
 def custom_logout_view(request):

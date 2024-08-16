@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'apk_manager',
         'USER': 'root',
         'PASSWORD': 'Qwert12345',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
