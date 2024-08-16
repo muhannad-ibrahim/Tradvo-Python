@@ -1,8 +1,8 @@
-# apK Manager
+# Apk Manager
 
 ## Overview
 
-apK Manager is a Django-based application designed for managing APK files. The platform allows users to upload, update, delete, and view their APK files, with support for multilingual functionality. It utilizes Docker for containerization, making deployment and management easier.
+Apk Manager is a Django-based application designed to manage APK files. The platform allows users to upload, update, delete, and view their APK files, supporting multilingual functionality. It utilizes Docker for containerization, making deployment and management easier.
 
 ## Features
 
